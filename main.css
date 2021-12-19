@@ -7,7 +7,7 @@
 
 .color_container{
     width: 100%;
-    height: 85vh;
+    height: 88vh;
     display: flex;
 }
 
@@ -15,8 +15,18 @@
     width: 25%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.color_code{
+    justify-self: flex-start;
+    align-self: center;
+    margin-bottom: 200px;
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
 }
 
 .gen_color{
@@ -31,6 +41,7 @@
     background-color: rgb(180, 180, 180);
     font-size: 18px;
     border: 1px solid rgb(114, 114, 114);
+    transition: 0.2s all ease;
 }
 
 .gen_color:hover{
@@ -40,6 +51,31 @@
 
 .color_menu{
     width: 100%;
-    height: 15vh;
+    height: 12vh;
     background-color: rgb(180, 180, 180);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu_btn{
+    width: 40%;
+    height: 90%;
+    border-radius: 50px;
+    border: 1px solid rgb(102, 102, 102);
+    font-size: 18px;
+    transition: 0.2s all ease;
+}
+
+.menu_btn:hover{
+    background-color: rgb(78, 78, 78);
+    color: white;
+}
+
+.color_menu div{
+    width: 30%;
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
