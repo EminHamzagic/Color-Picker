@@ -3,23 +3,12 @@ var randomColor;
 var color_codes = document.getElementsByClassName('color_code');
 const saveBtn = document.getElementById('save');
 const showSaved = document.getElementById('show');
+var clPalettes = [];
 var colors = ['#', '#', '#', '#'];
 
 var colorStorage = window.localStorage;
 
-var colorPalettes = [];
-
-var defaultPalette = {
-    id: Date.now(),
-    color1: '#',
-    color2: '#',
-    color3: '#',
-    color4: '#'
-}
-
-colorPalettes.push(defaultPalette);
-
-console.log(colorPalettes);
+console.log(clPalettes);
 
 gen_buttons[0].addEventListener('click', () => {
     randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -49,11 +38,8 @@ gen_buttons[3].addEventListener('click', () => {
     colors[3] = '#' + randomColor;
 });
 
-// function addPallete(palette){
-//     console.log(colorPalettes);
-// }
-
-saveBtn.addEventListener('click', function() {
+saveBtn.addEventListener('click', () => {
+    loadColors();
     const palette = {
         id: Date.now(),
         color1: colors[0],
@@ -61,20 +47,16 @@ saveBtn.addEventListener('click', function() {
         color3: colors[2],
         color4: colors[3]
     }
-    // if (colorPalettes.length === 1){
-    //     colorPalettes[0] = palette;
-    // }
-    // else {
-    //     colorPalettes.push(palette);
-    // }
-    // colorPalettes = ;
-    console.log(colorPalettes);
-    // colorStorage.setItem('palettes', JSON.stringify(colorPalettes));
-    // console.log(colorStorage);
+    clPalettes.push(palette)
+    colorStorage.setItem('palettes', JSON.stringify(clPalettes));
+    console.log(colorStorage);
 })
 
 function loadColors(){
-    colorPalettes = JSON.parse(colorStorage.getItem('palettes'))
+    const ref = colorStorage.getItem('palettes');
+    if (ref) {
+        clPalettes = JSON.parse(ref);
+    }
 }
 
 loadColors();
