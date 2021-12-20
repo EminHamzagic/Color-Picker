@@ -51,6 +51,7 @@ saveBtn.addEventListener('click', () => {
     clPalettes.push(palette)
     colorStorage.setItem('palettes', JSON.stringify(clPalettes));
     console.log(colorStorage);
+    showPalettes(clPalettes);
 })
 
 function loadColors(){
@@ -71,7 +72,7 @@ function showPalettes(paletteList){
             <p>Palette #${paletteList.indexOf(item) + 1}</p>
             <div class="palette_buttons">
                 <button class="load_btn"><i class="fas fa-spinner"></i></button>
-                <button class="del_item"><i class="del_btn fas fa-times"></i></button>
+                <button class="del_item"><i class="del_i fas fa-times"></i></button>
             </div>
         `;
         pl_list.append(list_item);
@@ -84,5 +85,22 @@ showSaved.addEventListener('click', () => {
     // colors_list = JSON.parse(colorStorage.getItem('paletts'));
     // console.log(colors_list);
     loadColors();
+    document.querySelector('.saved_colors').classList.toggle('active');
 })
 
+function del_palette(id){
+    clPalettes = clPalettes.filter(function(item) {
+        return item.id != id;
+    })
+    colorStorage.setItem('palettes', JSON.stringify(clPalettes));
+    showPalettes(clPalettes);
+}
+
+pl_list.addEventListener('click', function(event) {
+    if (event.target.classList.contains('del_item')){
+        del_palette(event.target.parentElement.parentElement.getAttribute('data-key'));
+    }
+    else if (event.target.classList.contains('del_i')){
+        del_palette(event.target.parentElement.parentElement.parentElement.getAttribute('data-key'));
+    }
+})
