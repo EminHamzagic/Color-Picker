@@ -3,8 +3,9 @@ var randomColor;
 var color_codes = document.getElementsByClassName('color_code');
 const saveBtn = document.getElementById('save');
 const showSaved = document.getElementById('show');
+var pl_list = document.querySelector('.palette_list');
 var clPalettes = [];
-var colors = ['#', '#', '#', '#'];
+var colors = ['#ffffff', '#ffffff', '#ffffff', '#ffffff'];
 
 var colorStorage = window.localStorage;
 
@@ -57,11 +58,31 @@ function loadColors(){
     if (ref) {
         clPalettes = JSON.parse(ref);
     }
+    showPalettes(clPalettes);
+}
+
+function showPalettes(paletteList){
+    pl_list.innerHTML = '';
+    paletteList.forEach(function(item) {
+        let list_item = document.createElement('li')
+        list_item.setAttribute('data-key', item.id);
+        list_item.setAttribute('class', 'palette');
+        list_item.innerHTML = `
+            <p>Palette #${paletteList.indexOf(item) + 1}</p>
+            <div class="palette_buttons">
+                <button class="load_btn"><i class="fas fa-spinner"></i></button>
+                <button class="del_item"><i class="del_btn fas fa-times"></i></button>
+            </div>
+        `;
+        pl_list.append(list_item);
+    })
 }
 
 loadColors();
-// localStorage.clear();
+
 showSaved.addEventListener('click', () => {
-    colors_list = JSON.parse(colorStorage.getItem('paletts'));
-    console.log(colors_list);
+    // colors_list = JSON.parse(colorStorage.getItem('paletts'));
+    // console.log(colors_list);
+    loadColors();
 })
+
