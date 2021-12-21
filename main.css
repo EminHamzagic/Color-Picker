@@ -40,8 +40,8 @@
     margin-bottom: 20px;
     background-color: rgb(180, 180, 180);
     font-size: 18px;
-    border: 1px solid rgb(114, 114, 114);
     transition: 0.2s all ease;
+    color: white;
 }
 
 .gen_color:hover{
@@ -81,11 +81,10 @@
 }
 
 .saved_colors{
-    width: 35%;
-    /* height: 50vh; */
+    width: 20%;
     position: absolute;
     top: 50px;
-    left: 400px;
+    left: 550px;
     border-radius: 30px;
     transition: 0.5s all ease;
     display: none;
@@ -93,7 +92,7 @@
     align-items: center;
     flex-direction: column;
     background-color: rgb(228, 228, 228);
-    transition: 0.5s all ease;
+    transition: 1s all ease;
 }
 
 .saved_colors h1{
@@ -148,6 +147,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.2s all ease;
+}
+
+.load_btn:hover{
+    background-color: rgb(22, 68, 168);
+}
+
+.del_item:hover{
+    background-color: rgb(180, 0, 0);
 }
 
 .active{

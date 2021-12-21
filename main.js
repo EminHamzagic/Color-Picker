@@ -6,6 +6,7 @@ const showSaved = document.getElementById('show');
 var pl_list = document.querySelector('.palette_list');
 var clPalettes = [];
 var colors = ['#ffffff', '#ffffff', '#ffffff', '#ffffff'];
+var colorDivs = document.getElementsByClassName('color');
 
 var colorStorage = window.localStorage;
 
@@ -71,7 +72,7 @@ function showPalettes(paletteList){
         list_item.innerHTML = `
             <p>Palette #${paletteList.indexOf(item) + 1}</p>
             <div class="palette_buttons">
-                <button class="load_btn"><i class="fas fa-spinner"></i></button>
+                <button class="load_btn"><i class="load_i fas fa-spinner"></i></button>
                 <button class="del_item"><i class="del_i fas fa-times"></i></button>
             </div>
         `;
@@ -82,8 +83,6 @@ function showPalettes(paletteList){
 loadColors();
 
 showSaved.addEventListener('click', () => {
-    // colors_list = JSON.parse(colorStorage.getItem('paletts'));
-    // console.log(colors_list);
     loadColors();
     document.querySelector('.saved_colors').classList.toggle('active');
 })
@@ -96,11 +95,32 @@ function del_palette(id){
     showPalettes(clPalettes);
 }
 
+function loadPalette(id){
+    clPalettes.forEach((item) => {
+        if (item.id == id){
+            colorDivs[0].style.backgroundColor = item.color1;
+            color_codes[0].innerHTML = item.color1;
+            colorDivs[1].style.backgroundColor = item.color2;
+            color_codes[1].innerHTML = item.color2;
+            colorDivs[2].style.backgroundColor = item.color3;
+            color_codes[2].innerHTML = item.color3;
+            colorDivs[3].style.backgroundColor = item.color4;
+            color_codes[3].innerHTML = item.color4;
+        }
+    })
+}
+
 pl_list.addEventListener('click', function(event) {
     if (event.target.classList.contains('del_item')){
         del_palette(event.target.parentElement.parentElement.getAttribute('data-key'));
     }
     else if (event.target.classList.contains('del_i')){
         del_palette(event.target.parentElement.parentElement.parentElement.getAttribute('data-key'));
+    }
+    else if (event.target.classList.contains('load_btn')){
+        loadPalette(event.target.parentElement.parentElement.getAttribute('data-key'));
+    }
+    else if (event.target.classList.contains('load_i')){
+        loadPalette(event.target.parentElement.parentElement.parentElement.getAttribute('data-key'));
     }
 })
