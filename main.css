@@ -83,8 +83,8 @@
 .saved_colors{
     width: 20%;
     position: absolute;
-    top: 50px;
-    left: 550px;
+    top: 20vh;
+    left: 40%;
     border-radius: 30px;
     transition: 0.5s all ease;
     display: none;
